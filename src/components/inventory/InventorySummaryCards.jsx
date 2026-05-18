@@ -1,39 +1,35 @@
 import React from 'react';
-import { Package, AlertTriangle, RefreshCcw, MinusCircle } from 'lucide-react';
+import { Package, AlertTriangle, AlertCircle, TrendingUp } from 'lucide-react';
 
 const toneStyles = (tone) => {
   switch (tone) {
     case 'warning':
       return { 
         icon: AlertTriangle, 
-        iconColor: '#D97706', 
-        bgColor: '#FFFBEB', 
-        borderColor: '#FEF3C7',
-        blob: 'bg-amber-50'
+        iconColor: '#B45309', // Dark amber
+        blob: 'bg-[#FFF7ED]', // Very light orange/amber
+        valColor: 'text-[#1E293B]',
       };
     case 'success':
       return { 
-        icon: RefreshCcw, 
-        iconColor: '#059669', 
-        bgColor: '#ECFDF5', 
-        borderColor: '#D1FAE5',
-        blob: 'bg-emerald-50'
+        icon: AlertCircle, 
+        iconColor: '#16A34A', // Green
+        blob: 'bg-[#F0FDF4]', // Very light green
+        valColor: 'text-[#1E293B]',
       };
     case 'danger':
       return { 
-        icon: MinusCircle, 
-        iconColor: '#DC2626', 
-        bgColor: '#FEF2F2', 
-        borderColor: '#FEE2E2',
-        blob: 'bg-rose-50'
+        icon: AlertCircle, 
+        iconColor: '#E11D48', // Red
+        blob: 'bg-[#FFF1F2]', // Very light red
+        valColor: 'text-[#E11D48]',
       };
     default:
       return { 
         icon: Package, 
-        iconColor: '#5949BE', 
-        bgColor: '#F5F3FF', 
-        borderColor: '#EDE9FE',
-        blob: 'bg-indigo-50'
+        iconColor: '#5949BE', // Purple
+        blob: 'bg-[#F5F3FF]', // Very light purple
+        valColor: 'text-[#1E293B]',
       };
   }
 };
@@ -48,29 +44,33 @@ const InventorySummaryCards = ({ cards }) => {
         return (
           <div 
             key={card.id} 
-            className="relative overflow-hidden bg-white rounded-[16px] border border-[#E2E8F0] p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] group transition-all duration-300 hover:shadow-[0px_8px_30px_rgba(0,0,0,0.06)]"
+            className="relative overflow-hidden bg-white rounded-[16px] p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-[#F8FAFC] group transition-all duration-300 hover:shadow-[0px_8px_30px_rgba(0,0,0,0.05)]"
           >
-            {/* Background Blob Effect */}
-            <div className={`absolute -right-6 -top-6 w-32 h-32 rounded-full ${style.blob} opacity-50 blur-2xl group-hover:scale-110 transition-transform duration-500`} />
+            {/* Background Blob Effect (Smaller size to decrease the arch) */}
+            <div className={`absolute -right-6 -top-6 w-32 h-32 rounded-full ${style.blob} transition-transform duration-500 group-hover:scale-105`} />
             
-            <div className="relative z-10">
-              <div className="flex justify-between items-start mb-6">
-                <span className="text-[13px] font-bold text-[#64748B] uppercase tracking-wider">{card.title}</span>
+            <div className="relative z-10 flex flex-col h-full justify-between">
+              <div className="flex justify-between items-start mb-8">
+                <span className="text-[14px] font-medium text-[#475569]">{card.title}</span>
                 <div 
-                  className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm border"
-                  style={{ backgroundColor: style.bgColor, borderColor: style.borderColor }}
+                  className="w-[52px] h-[52px] rounded-[14px] bg-white/60 backdrop-blur-sm shadow-[0px_2px_12px_rgba(0,0,0,0.06),_inset_0px_1px_1px_rgba(255,255,255,1)] border border-white flex items-center justify-center relative z-10"
                 >
-                  <Icon size={20} color={style.iconColor} strokeWidth={2.5} />
+                  <Icon size={24} color={style.iconColor} strokeWidth={2.5} />
                 </div>
               </div>
               
-              <div className="flex flex-col gap-1">
-                <h3 className="text-[28px] font-black text-[#1E293B] leading-none tracking-tight">
+              <div className="flex flex-col gap-1.5">
+                <h3 className={`text-[32px] font-bold leading-none tracking-tight ${style.valColor}`}>
                   {card.value}
                 </h3>
-                <p className={`text-[12px] font-bold ${card.tone === 'danger' ? 'text-[#DC2626]' : 'text-[#64748B]'}`}>
-                  {card.meta}
-                </p>
+                <div className="flex items-center gap-1">
+                  {card.id === 1 && (
+                     <TrendingUp size={14} className="text-[#9D174D]" strokeWidth={3} />
+                  )}
+                  <p className="text-[12px] font-medium text-[#94A3B8]">
+                    {card.meta}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

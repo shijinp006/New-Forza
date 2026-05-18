@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 /**
  * Custom grouped-bar chart for monthly purchase trend.
  * Uses pure divs for easy visual edits without chart lib constraints.
@@ -5,6 +7,12 @@
 export default function PurchaseTrendChart({ rows }) {
   const max = 150;
   const ticks = [0, 50, 100, 150];
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="rounded-[14px] border border-[#E3E7EF] bg-white p-4">
@@ -31,16 +39,16 @@ export default function PurchaseTrendChart({ rows }) {
                 <div className="relative flex h-[188px] w-full items-end justify-center">
                   <div className="flex w-[42px] flex-col justify-end">
                     <div
-                      className="rounded-t-[2px] bg-[#CCC7DD]"
-                      style={{ height: `${(row.credit / max) * 188}px` }}
+                      className="rounded-t-[2px] bg-[#CCC7DD] transition-all duration-1000 ease-out"
+                      style={{ height: mounted ? `${(row.credit / max) * 188}px` : '0px' }}
                     />
                     <div
-                      className="rounded-t-[2px] bg-[#DC575F]"
-                      style={{ height: `${(row.cash / max) * 188}px` }}
+                      className="rounded-t-[2px] bg-[#DC575F] transition-all duration-1000 ease-out"
+                      style={{ height: mounted ? `${(row.cash / max) * 188}px` : '0px' }}
                     />
                   </div>
                   {row.tag ? (
-                    <span className="absolute -top-2 rounded-[4px] bg-[#111827] px-1.5 py-0.5 text-[9px] font-semibold text-white">
+                    <span className={`absolute -top-2 rounded-[4px] bg-[#111827] px-1.5 py-0.5 text-[9px] font-semibold text-white transition-opacity duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
                       {row.tag}
                     </span>
                   ) : null}

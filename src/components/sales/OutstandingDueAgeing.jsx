@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { outstandingDueAgeingData } from '../../constants/salesData';
 
 /**
@@ -6,6 +6,13 @@ import { outstandingDueAgeingData } from '../../constants/salesData';
  * Re-aligned to match the image exactly: [Label] [Progress Bar] [Amount]
  */
 const OutstandingDueAgeing = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-white rounded-[24px] p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.04)] w-full xl:w-[320px] border border-[#F1F5F9] flex flex-col h-full">
       <h3 className="text-[15px] font-bold text-[#1E293B] mb-8">Outstanding Due Ageing</h3>
@@ -23,7 +30,7 @@ const OutstandingDueAgeing = () => {
                <div 
                  className="absolute top-0 left-0 h-full rounded-full transition-all duration-1500 ease-out delay-300 shadow-sm"
                  style={{ 
-                   width: `${item.percentage}%`, 
+                   width: mounted ? `${item.percentage}%` : '0%', 
                    backgroundColor: item.color,
                  }}
                />

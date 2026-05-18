@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BarChart, 
   Bar, 
@@ -83,6 +83,13 @@ const CustomBar = (props) => {
  * Optimized for exact visual replication of the reference design.
  */
 const SalesByTransaction = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-white rounded-[24px] p-8 shadow-[0px_10px_40px_rgba(0,0,0,0.02)] flex-1 border border-[#F1F5F9]">
       <div className="flex justify-between items-start mb-12">
@@ -97,38 +104,42 @@ const SalesByTransaction = () => {
 
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={salesByTransactionData}
-            margin={{ top: 20, right: 30, left: -20, bottom: 0 }}
-            barSize={80} 
-          >
-            <CartesianGrid vertical={false} strokeDasharray="0" stroke="#F1F5F9" />
-            <XAxis 
-              dataKey="name" 
-              axisLine={false} 
-              tickLine={false} 
-              tick={{ fill: '#64748B', fontSize: 13, fontWeight: 700 }}
-              dy={15}
-            />
-            <YAxis 
-              domain={[0, 6000]}
-              axisLine={false} 
-              tickLine={false} 
-              tick={{ fill: '#94A3B8', fontSize: 11, fontWeight: 600 }}
-              ticks={[0, 1500, 3000, 4500, 6000]}
-              tickFormatter={(v) => v === 0 ? '0' : `${v / 1000}k`}
-            />
-            <Tooltip cursor={{ fill: 'transparent' }} content={() => null} />
-            <Bar 
-              dataKey="value" 
-              shape={<CustomBar />}
-              animationDuration={1500}
+          {mounted ? (
+            <BarChart
+              data={salesByTransactionData}
+              margin={{ top: 20, right: 30, left: -20, bottom: 0 }}
+              barSize={80} 
             >
-              {salesByTransactionData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Bar>
-          </BarChart>
+              <CartesianGrid vertical={false} strokeDasharray="0" stroke="#F1F5F9" />
+              <XAxis 
+                dataKey="name" 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fill: '#64748B', fontSize: 13, fontWeight: 700 }}
+                dy={15}
+              />
+              <YAxis 
+                domain={[0, 6000]}
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fill: '#94A3B8', fontSize: 11, fontWeight: 600 }}
+                ticks={[0, 1500, 3000, 4500, 6000]}
+                tickFormatter={(v) => v === 0 ? '0' : `${v / 1000}k`}
+              />
+              <Tooltip cursor={{ fill: 'transparent' }} content={() => null} />
+              <Bar 
+                dataKey="value" 
+                shape={<CustomBar />}
+                animationDuration={1500}
+                animationBegin={0}
+                isAnimationActive={true}
+              >
+                {salesByTransactionData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
+            </BarChart>
+          ) : null}
         </ResponsiveContainer>
       </div>
 
