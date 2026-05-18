@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { ChevronRight, Building2, ArrowRight } from 'lucide-react';
 
@@ -44,7 +44,39 @@ const branches = [
   }
 ];
 
-const Donut = ({ percentage }) => {
+const Donut = ({ currentStr, targetStr }) => {
+  const current = parseInt(currentStr.replace(/,/g, ''), 10);
+  const target = parseInt(targetStr.replace(/,/g, ''), 10);
+  const targetPercentage = Math.round((current / target) * 100) || 0;
+
+  const [percentage, setPercentage] = useState(0);
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    // Small delay to ensure CSS transition is registered before updating
+    const timer = setTimeout(() => {
+      setPercentage(targetPercentage);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [targetPercentage]);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    const duration = 1000;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // cubic ease out
+      setDisplayValue(Math.floor(easeProgress * targetPercentage));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        setDisplayValue(targetPercentage);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [targetPercentage]);
+
   const radius = 38;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
@@ -73,7 +105,7 @@ const Donut = ({ percentage }) => {
           className="transition-all duration-1000 ease-out"
         />
       </svg>
-      <span className="absolute text-[22px] font-bold text-[#111827]">{percentage}%</span>
+      <span className="absolute text-[22px] font-bold text-[#111827]">{displayValue}%</span>
     </div>
   );
 };
@@ -147,7 +179,7 @@ const SelectBranch = () => {
               </div>
 
               {/* Progress Chart */}
-              <Donut percentage={branch.progress} />
+              <Donut currentStr={branch.current} targetStr={branch.target} />
 
               {/* Card Footer */}
               <div className="flex justify-between items-end">
