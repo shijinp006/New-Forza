@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import SupplierPerformanceFilter from "../components/purchase/performance/SupplierPerformanceFilter";
-import SupplierPerformanceTable from "../components/purchase/performance/SupplierPerformanceTable";
-import { supplierPerformanceData } from "../constants/supplierPerformanceData";
+import SupplierPerformanceFilter from "../../components/purchase/performance/SupplierPerformanceFilter";
+import SupplierPerformanceTable from "../../components/purchase/performance/SupplierPerformanceTable";
+import { supplierPerformanceData } from "../../constants/supplierPerformanceData";
 
 const SupplierPerformance = () => {
   const [searchTerm, setSearchTerm] = useState("");
