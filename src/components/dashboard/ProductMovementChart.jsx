@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { useNavigate } from 'react-router';
 import { productMovementData } from '../../constants/dashboardData';
@@ -10,6 +10,36 @@ import { productMovementData } from '../../constants/dashboardData';
  */
 const ProductMovementChart = () => {
   const navigate = useNavigate();
+  const [mounted, setMounted] = useState(false);
+  const [animatedEndAngle, setAnimatedEndAngle] = useState(90);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
+    let startTimestamp = null;
+    const duration = 1500;
+    const startAngle = 90;
+    const totalSweep = 360;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+      
+      setAnimatedEndAngle(startAngle + (easeProgress * totalSweep));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [mounted]);
 
   const handleClick = () => {
     navigate('/dashboard/total-products');
@@ -26,26 +56,27 @@ const ProductMovementChart = () => {
 
       <div className="h-[180px] w-full relative">
         <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={productMovementData}
-              cx="50%"
-              cy="50%"
-              innerRadius={55}
-              outerRadius={70}
-              paddingAngle={0}
-              dataKey="value"
-              startAngle={90}
-              endAngle={450}
-              animationDuration={1500}
-              animationBegin={400}
-            >
-              {productMovementData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
+          {mounted ? (
+            <PieChart>
+              <Pie
+                data={productMovementData}
+                cx="50%"
+                cy="50%"
+                innerRadius={55}
+                outerRadius={70}
+                paddingAngle={0}
+                dataKey="value"
+                startAngle={90}
+                endAngle={animatedEndAngle}
+                isAnimationActive={false}
+              >
+                {productMovementData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          ) : null}
         </ResponsiveContainer>
         
         {/* Center Text */}

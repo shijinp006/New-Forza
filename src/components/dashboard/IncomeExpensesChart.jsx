@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { ArrowUpRight } from 'lucide-react';
 import { incomeExpensesData } from '../../constants/dashboardData';
@@ -9,6 +9,36 @@ import { incomeExpensesData } from '../../constants/dashboardData';
  */
 const IncomeExpensesChart = () => {
   const total = incomeExpensesData.reduce((acc, curr) => acc + curr.value, 0);
+  const [mounted, setMounted] = useState(false);
+  const [animatedEndAngle, setAnimatedEndAngle] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
+    let startTimestamp = null;
+    const duration = 1500;
+    const startAngle = 0;
+    const totalSweep = 360;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+      
+      setAnimatedEndAngle(startAngle + (easeProgress * totalSweep));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [mounted]);
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] w-full lg:w-[350px]">
@@ -24,26 +54,30 @@ const IncomeExpensesChart = () => {
 
       <div className="h-[220px] w-full relative">
         <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={incomeExpensesData}
-              cx="50%"
-              cy="50%"
-              innerRadius={65}
-              outerRadius={85}
-              paddingAngle={2}
-              dataKey="value"
-              animationDuration={1800}
-              stroke="none"
-            >
-              {incomeExpensesData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip 
-              contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-            />
-          </PieChart>
+          {mounted ? (
+            <PieChart>
+              <Pie
+                data={incomeExpensesData}
+                cx="50%"
+                cy="50%"
+                innerRadius={65}
+                outerRadius={85}
+                paddingAngle={2}
+                dataKey="value"
+                startAngle={0}
+                endAngle={animatedEndAngle}
+                isAnimationActive={false}
+                stroke="none"
+              >
+                {incomeExpensesData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip 
+                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+              />
+            </PieChart>
+          ) : null}
         </ResponsiveContainer>
         
         {/* Center Text */}

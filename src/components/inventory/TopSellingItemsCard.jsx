@@ -1,14 +1,21 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Search, ChevronDown, ArrowRight } from 'lucide-react';
 import { fastMovingItems, slowMovingItems } from '../../constants/inventoryChartData';
 import { useNavigate } from 'react-router';
 
 const TopSellingItemsCard = ({ className = "" }) => {
   const [mode, setMode] = useState('fast');
+  const [mounted, setMounted] = useState(false);
   const navigate = useNavigate();
   const rows = mode === 'fast' ? fastMovingItems : slowMovingItems;
   
   const maxUnits = useMemo(() => Math.max(...rows.map(item => item.units)), [rows]);
+
+  useEffect(() => {
+    setMounted(false);
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, [mode]);
 
   return (
     <section className={`bg-white rounded-[20px] border border-[#E2E8F0] p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] ${className}`}>
@@ -80,8 +87,8 @@ const TopSellingItemsCard = ({ className = "" }) => {
             </div>
             <div className="h-2 w-full bg-[#F1F5F9] rounded-full overflow-hidden">
               <div 
-                className="h-full bg-[#5949BE] rounded-full transition-all duration-700 ease-out"
-                style={{ width: `${(row.units / maxUnits) * 100}%` }}
+                className="h-full bg-[#5949BE] rounded-full transition-all duration-1000 ease-out"
+                style={{ width: mounted ? `${(row.units / maxUnits) * 100}%` : '0%' }}
               />
             </div>
           </div>

@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * TargetVsSales Component
  * Pixel-perfect redesign to match the reference image exactly.
  * The wave position is reactive to the percentage data.
  */
-const TargetVsSales = ({ percentage = 78, current = "124.5k", target = "160.0k" }) => {
+const TargetVsSales = ({ current = "124.5k", target = "160.0k" }) => {
+  const currentNum = parseFloat(current.replace(/[^\d.-]/g, ''));
+  const targetNum = parseFloat(target.replace(/[^\d.-]/g, ''));
+  const targetPercentage = Math.round((currentNum / targetNum) * 100) || 0;
+
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPercentage(targetPercentage);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [targetPercentage]);
+
   return (
     <div className="bg-white rounded-[24px] p-6 shadow-[0px_10px_40px_rgba(0,0,0,0.03)] w-full xl:w-[320px] border border-[#F1F5F9] flex flex-col h-full">
       <h3 className="text-[15px] font-bold text-[#1E293B] mb-8">Target vs Sales</h3>
@@ -36,9 +49,9 @@ const TargetVsSales = ({ percentage = 78, current = "124.5k", target = "160.0k" 
         </div>
 
         {/* Big Percentage Label - Centered within the liquid container */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <span className="text-[52px] font-black text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)] tracking-tighter">
-            {percentage}%
+            {targetPercentage}%
           </span>
         </div>
       </div>
