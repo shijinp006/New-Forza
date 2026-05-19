@@ -48,7 +48,8 @@ const CustomBar = (props) => {
           padding: "0px",
           borderRadius: "5px",
           boxShadow: "-4px -4px 10px 0px #FFFFFF66, 5px 5px 10px 0px #8896A366",
-          boxSizing: "border-box"
+          boxSizing: "border-box",
+          transition: "all 0.5s ease-out"
         }}
       >
         <div
@@ -58,7 +59,8 @@ const CustomBar = (props) => {
             backgroundColor: "#6F57DE",
             borderRadius: "5px",
             boxShadow: "inset -5px -5px 10px 0px #8896A340, inset 5px 5px 5px 0px #FFFFFF",
-            boxSizing: "border-box"
+            boxSizing: "border-box",
+            transition: "all 0.5s ease-out"
           }}
         />
       </div>
@@ -144,6 +146,7 @@ const ItemPerformanceChart = ({ data }) => {
                 shape={<CustomBar />}
                 animationDuration={1500}
                 animationBegin={0}
+                isAnimationActive={true}
               />
             </BarChart>
           ) : null}

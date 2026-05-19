@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { ChevronRight, Building2, ArrowRight } from 'lucide-react';
 
-import sidebarLogo from '../assets/sidebarLogo.svg';
-import logoText from '../assets/logoText.svg';
+import sidebarLogo from '../../assets/sidebarLogo.svg';
+import logoText from '../../assets/logoText.svg';
 
 const branches = [
   {
@@ -148,8 +148,8 @@ const SelectBranch = () => {
       {/* Main Content */}
       <main className="max-w-[1400px] mx-auto px-6 sm:px-10 py-10 relative z-10">
         <div className="mb-10">
-          <h1 className="text-[34px] font-bold text-[#111827] mb-2 tracking-tight">Select Branch</h1>
-          <p className="text-[#6B7280] text-[15px] max-w-2xl font-medium leading-relaxed">
+          <h1 className="text-[34px] font-extrabold font-manrope text-[#2B2F34] mb-2 tracking-tight">Select Branch</h1>
+          <p className="text-[#585C62] text-[18px] max-w-2xl font-normal font-inter ">
             Overview of regional performance and sales goals. Select a branch to view detailed editorial analytics.
           </p>
         </div>
@@ -159,20 +159,20 @@ const SelectBranch = () => {
             <div 
               key={branch.id}
               onClick={() => navigate('/dashboard')}
-              className="bg-white rounded-[24px] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_12px_40px_rgba(89,73,190,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="bg-white rounded-[12px] p-5 shadow-[0px_12px_32px_-4px_#2B2F340F] border border-[#AAADB426] hover:shadow-[0_12px_40px_rgba(89,73,190,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
               {/* Card Header */}
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="text-[12px] text-[#9CA3AF] font-medium tracking-wide mb-0.5">{branch.type}</p>
-                  <h3 className="text-[18px] font-bold text-[#111827]">{branch.name}</h3>
+                  <p className="text-[12px] text-[#9CA3AF] font-medium tracking-wide font-inter mb-0.5">{branch.type}</p>
+                  <h3 className="text-[18px] whitespace-nowrap font-bold text-[#111827] font-manrope">{branch.name}</h3>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#6B7280]">
+                <div className="flex items-start gap-2">
+                  <div className="flex items-center gap-1 text-[11px] font-semibold text-[#6B7280]">
                     <Building2 size={13} strokeWidth={2.5} />
                     {branch.tag}
                   </div>
-                  <div className="w-[34px] h-[34px] rounded-xl bg-[#F5F3FF] text-[#6F57DE] flex items-center justify-center">
+                  <div className="w-[34px] h-[34px] rounded-xl bg-[#EDF1F8] text-[#5949BE] flex items-center justify-center">
                     <ArrowRight size={16} strokeWidth={2.5} />
                   </div>
                 </div>

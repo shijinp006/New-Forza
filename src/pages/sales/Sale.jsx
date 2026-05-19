@@ -1,11 +1,11 @@
 import React from 'react';
 
-import SalesStatCard from '../components/sales/SalesStatCard';
-import SalesByTransaction from '../components/sales/SalesByTransaction';
-import TargetVsSales from '../components/sales/TargetVsSales';
-import OutstandingDueAgeing from '../components/sales/OutstandingDueAgeing';
-import CustomerSalesTable from '../components/sales/CustomerSalesTable';
-import { salesStatsData, customerSalesTableData } from '../constants/salesData';
+import SalesStatCard from '../../components/sales/SalesStatCard';
+import SalesByTransaction from '../../components/sales/SalesByTransaction';
+import TargetVsSales from '../../components/sales/TargetVsSales';
+import OutstandingDueAgeing from '../../components/sales/OutstandingDueAgeing';
+import CustomerSalesTable from '../../components/sales/CustomerSalesTable';
+import { salesStatsData, customerSalesTableData } from '../../constants/salesData';
 
 /**
  * Sale (Sales Analysis) Page

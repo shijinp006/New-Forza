@@ -36,7 +36,7 @@ function cardTone(tone) {
   };
 }
 
-export default function TaxSummaryCards({ cards }) {
+function TaxSummaryCards({ cards }) {
   return (
     <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {cards.map((card) => {
@@ -50,14 +50,20 @@ export default function TaxSummaryCards({ cards }) {
               tone.border,
             ].join(" ")}
           >
-            <div className={`absolute -right-12 -top-14 h-[150px] w-[150px] rounded-full ${tone.tint} opacity-55`} />
+            <div
+              className={`absolute -right-12 -top-14 h-[150px] w-[150px] rounded-full ${tone.tint} opacity-55`}
+            />
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className={`text-[13px] font-medium ${tone.title}`}>
                   {card.title}
                 </p>
-                <p className={`mt-2 text-[40px] font-bold leading-none tracking-[-0.02em] ${tone.amount}`}>
-                  <span className="mr-2 text-[40px] align-middle">{card.currency}</span>
+                <p
+                  className={`mt-2 text-[40px] font-bold leading-none tracking-[-0.02em] ${tone.amount}`}
+                >
+                  <span className="mr-2 text-[40px] align-middle">
+                    {card.currency}
+                  </span>
                   <span className="align-middle">{card.amount}</span>
                 </p>
               </div>
@@ -79,3 +85,4 @@ export default function TaxSummaryCards({ cards }) {
   );
 }
 
+export default TaxSummaryCards;
