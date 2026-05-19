@@ -59,7 +59,7 @@ const Login = () => {
 
         {/* Form Container */}
         <div className="flex-1   flex w-full items-center justify-center px-4 sm:px-6 mt-8 lg:mt-0">
-          <div className="w-full max-w-[530px] max-h-[558px] flex flex-col  items-center bg-white  border border-[#F2E0FB] shadow-[0px_0px_20px_0px_#7158E23D] backdrop-blur-lg rounded-[16px] p-8 sm:p-10 lg:py-[45px] lg:px-[32px] ">
+          <div className="w-fit max-w-[530px] max-h-[558px] flex flex-col  items-center bg-white  border border-[#F2E0FB] shadow-[0px_0px_20px_0px_#7158E23D] backdrop-blur-lg rounded-[16px] p-8 sm:p-10 lg:py-[48px] lg:px-[64px] ">
             <h1 className="text-[30px] font-semibold text-[#111827] mb-2 font-inter tracking-tight">
               Log in to your account
             </h1>

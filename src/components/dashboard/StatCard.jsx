@@ -26,14 +26,14 @@ const StatCard = ({ title, amount, subtitle, icon, color }) => {
 
   const handleClick = () => {
     if (isClickable) {
-      navigate('/dashboard/revenue-details');
+      navigate('/dashboard/sale/revenue-details');
     }
   };
 
   return (
     <div 
       onClick={handleClick}
-      className={`bg-white rounded-md p-5.5 shadow-[inset_0px_1px_1px_rgba(255,255,255,0.8),inset_0px_-1px_1px_rgba(0,0,0,0.12)] flex flex-col gap-2.75 flex-1 min-w-[260px] border border-[#C19A0026] transition-all duration-300 ${
+      className={`bg-white rounded-md p-5.5 shadow-[inset_0px_1px_1px_rgba(255,255,255,0.8),inset_0px_-1px_1px_rgba(0,0,0,0.12)] flex flex-col gap-2.75 flex-1 min-w-[220px] border border-[#C19A0026] transition-all duration-300 ${
         isClickable ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1' : ''
       }`}
     >

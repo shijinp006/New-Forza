@@ -19,6 +19,7 @@ const TotalProducts = lazy(() => import("./pages/TotalProducts"));
 const CustomerOutstanding = lazy(() => import("./pages/CustomerOutstanding"));
 const SupplierPerformance = lazy(() => import("./pages/SupplierPerformance"));
 const StockCard = lazy(() => import("./pages/StockCard"));
+const ItemReport = lazy(() => import("./pages/inventory/ItemReport"));
 
 
 
@@ -50,12 +51,16 @@ function App() {
               <Route index element={<Inventory />} />
               <Route path="total-products" element={<TotalProducts />} />
               <Route path="stock-card" element={<StockCard />} />
+              <Route path="item-report" element={<ItemReport />} />
             </Route>
             <Route path="account" element={<Account />} />
             <Route path="settings" element={<Settings />} />
             <Route path="help" element={<Help />} />
             <Route path="notifications" element={<Notifications />} />
-            <Route path="tax" element={<Tax />} />
+            <Route path="tax">
+              <Route index element={<Tax />} />
+              <Route path=":categoryId" element={<Tax />} />
+            </Route>
 
           </Route>
 

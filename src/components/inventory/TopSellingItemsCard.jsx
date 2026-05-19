@@ -59,10 +59,10 @@ const TopSellingItemsCard = ({ className = "" }) => {
         </button>
 
         <button 
-          onClick={() => navigate('/dashboard/inventory/stock-card')}
+          onClick={() => navigate('/dashboard/inventory/item-report')}
           className="flex items-center gap-1.5 text-[13px] font-bold text-[#5949BE] hover:underline transition-all"
         >
-          View Full <ArrowRight size={16} />
+          Item Report <ArrowRight size={16} />
         </button>
       </div>
 

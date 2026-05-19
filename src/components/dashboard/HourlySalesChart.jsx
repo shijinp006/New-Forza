@@ -23,7 +23,7 @@ const HourlySalesChart = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex-1 min-w-[300px] lg:min-w-[600px]">
+    <div className="bg-white rounded-2xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex-1 min-w-[300px] lg:min-w-[450px]">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-lg font-bold text-[#081021]">Hourly Sales</h3>

@@ -8,7 +8,7 @@ import { pdcChequesData } from '../../constants/dashboardData';
  */
 const PdcCheques = () => {
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex-1 min-w-[300px] lg:min-w-[600px]">
+    <div className="bg-white rounded-2xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex-1 min-w-[300px] lg:min-w-[450px]">
       <div className="flex justify-between items-start mb-6">
         <div className="flex items-center gap-3">
           <div>
