@@ -1,7 +1,7 @@
 import React from "react";
-import StockCardFilter from "../components/inventory/StockCardFilter";
-import StockCardTable from "../components/inventory/StockCardTable";
-import { stockCardData } from "../constants/stockCardData";
+import StockCardFilter from "../../components/inventory/StockCardFilter";
+import StockCardTable from "../../components/inventory/StockCardTable";
+import { stockCardData } from "../../constants/stockCardData";
 
 const StockCard = () => {
   return (

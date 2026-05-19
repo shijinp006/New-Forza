@@ -1,12 +1,12 @@
 import React from 'react';
-import InventorySummaryCards from "../components/inventory/InventorySummaryCards";
-import TopSellingItemsCard from "../components/inventory/TopSellingItemsCard";
-import InventoryInfoListCard from "../components/inventory/InventoryInfoListCard";
+import InventorySummaryCards from "../../components/inventory/InventorySummaryCards";
+import TopSellingItemsCard from "../../components/inventory/TopSellingItemsCard";
+import InventoryInfoListCard from "../../components/inventory/InventoryInfoListCard";
 import {
   inventorySummaryCards,
   manufacturedProducts,
   negativeStocks,
-} from "../constants/inventoryPageData";
+} from "../../constants/inventoryPageData";
 import { Calendar, Settings2 } from 'lucide-react';
 
 const Inventory = () => {

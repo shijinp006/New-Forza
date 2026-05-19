@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import ProductSummary from "../components/products/ProductSummary";
-import ProductTable from "../components/products/ProductTable";
-import { productData } from "../constants/productData";
+import ProductSummary from "../../components/products/ProductSummary";
+import ProductTable from "../../components/products/ProductTable";
+import { productData } from "../../constants/productData";
 
 const TotalProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");

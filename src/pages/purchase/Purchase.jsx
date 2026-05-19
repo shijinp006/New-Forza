@@ -1,14 +1,14 @@
-import PurchaseSummaryCards from "../components/purchase/PurchaseSummaryCards";
-import PurchaseTrendChart from "../components/purchase/PurchaseTrendChart";
-import SupplierDuesCard from "../components/purchase/SupplierDuesCard";
-import RecentSupplierTable from "../components/purchase/RecentSupplierTable";
+import PurchaseSummaryCards from "../../components/purchase/PurchaseSummaryCards";
+import PurchaseTrendChart from "../../components/purchase/PurchaseTrendChart";
+import SupplierDuesCard from "../../components/purchase/SupplierDuesCard";
+import RecentSupplierTable from "../../components/purchase/RecentSupplierTable";
 import {
   monthlyPurchaseTrend,
   purchaseSummaryCards,
   purchaseTableData,
   supplierDuesBreakdown,
   supplierDuesTotalLabel,
-} from "../constants/purchasePageData";
+} from "../../constants/purchasePageData";
 
 /**
  * Purchase Analysis page.

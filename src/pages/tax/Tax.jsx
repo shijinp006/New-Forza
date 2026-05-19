@@ -1,15 +1,8 @@
-/**
- * Tax Report page.
- *
- * Pattern is intentionally same as Accounts:
- * - data in constants
- * - visual blocks as small components
- * - page composes sections only
- */
 
-import TaxSummaryCards from "../components/tax/TaxSummaryCards";
-import TaxCategoryTable from "../components/tax/TaxCategoryTable";
-import { taxCategoryRows, taxSummaryCards } from "../constants/taxPageData";
+
+import TaxSummaryCards from "../../components/tax/TaxSummaryCards";
+import TaxCategoryTable from "../../components/tax/TaxCategoryTable";
+import { taxCategoryRows, taxSummaryCards } from "../../constants/taxPageData";
 
 const Tax = () => {
   return (

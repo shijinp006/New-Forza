@@ -42,7 +42,7 @@ const ProductMovementChart = () => {
   }, [mounted]);
 
   const handleClick = () => {
-    navigate('/dashboard/total-products');
+    navigate('/dashboard/inventory/total-products');
   };
 
   return (

@@ -20,13 +20,15 @@ const TargetVsSales = ({ current = "124.5k", target = "160.0k" }) => {
   }, [targetPercentage]);
 
   return (
-    <div className="bg-white rounded-[24px] p-6 shadow-[0px_10px_40px_rgba(0,0,0,0.03)] w-full xl:w-[320px] border border-[#F1F5F9] flex flex-col h-full">
-      <h3 className="text-[15px] font-bold text-[#1E293B] mb-8">Target vs Sales</h3>
+    <div className="bg-white rounded-[8px] p-5.5 shadow-[0px_1px_0px_0px_#FFFFFF40,inset_0px_1px_2px_0px_#00000026] w-full xl:w-[320px] border border-[#6F57DE26] flex flex-col h-full gap-[12px]">
+      <h3 className="text-[14px] font-inter font-semibold text-[#1E293B] ">Target vs Sales</h3>
 
       {/* Main Container - The soft purple box with wavy liquid */}
-      <div className="relative flex-1 min-h-[180px] w-full rounded-[24px] overflow-hidden bg-white shadow-[0px_20px_50px_-10px_rgba(124,58,237,0.2)] border border-[#F1F2F6]">
-        {/* Soft Background (Light Purple / White) */}
-        <div className="absolute inset-0 bg-[#FBFBFF]" />
+      <div className="relative flex-1 min-h-[180px] w-full rounded-[10px] overflow-hidden bg-linear-to-b from-[#7705B4] to-[#A93BE4] shadow-[0px_24.72px_32.26px_0px_#5949BE57,inset_0px_1px_4px_2px_#F2D9FF,inset_0px_1px_18px_2px_#F2D9FF] ">
+        {/* inner components div  */}
+       <div className='absolute inset-px bg-white rounded-[10px] overflow-hidden'>
+         {/* Soft Background (Light Purple / White) */}
+        <div className="absolute inset-0 shadow-[inset_0px_1px_4px_2px_#F2D9FF,inset_0px_1px_18px_2px_#F2D9FF] z-20 bg-lineat-to-b from-white/5 via-[#7705B4]/20 to-white/5" />
         
         {/* The Purple Liquid Area */}
         <div 
@@ -54,17 +56,18 @@ const TargetVsSales = ({ current = "124.5k", target = "160.0k" }) => {
             {targetPercentage}%
           </span>
         </div>
+       </div>
       </div>
 
       {/* Values Section */}
-      <div className="flex justify-between items-end mt-10 px-1">
+      <div className="flex justify-between items-end  px-1">
         <div className="flex flex-col gap-1.5">
-          <span className="text-[12px] font-bold text-[#94A3B8] uppercase tracking-wider">Current</span>
-          <span className="text-[19px] font-black text-[#0F172A] leading-none">{current}</span>
+          <span className="text-[12px] font-inter text-[#424656] capitalize">Current</span>
+          <span className="text-[14px] font-inter font-semibold text-[#191C1E] leading-none">{current}</span>
         </div>
         <div className="flex flex-col gap-1.5 text-right">
-          <span className="text-[12px] font-bold text-[#94A3B8] uppercase tracking-wider">Target</span>
-          <span className="text-[19px] font-black text-[#0F172A] leading-none">{target}</span>
+          <span className="text-[12px] font-inter text-[#424656] capitalize">Target</span>
+          <span className="text-[14px] font-inter font-semibold text-[#191C1E] leading-none">{target}</span>
         </div>
       </div>
     </div>

@@ -4,42 +4,42 @@ export const salesStatsData = [
     amount: "1.24 M",
     subtitle: "Number of Invoice : 120",
     icon: "total-sales",
-    color: "#5949BE",
+    color: "#4648D4",
   },
   {
     title: "Sales Returns",
     amount: "12.5k",
     subtitle: "Number of Invoice : 40",
     icon: "returns",
-    color: "#EF4444",
+    color: "#C03744",
   },
   {
     title: "Net Sales",
     amount: "42.5k",
     subtitle: "Sales - Sales Return",
     icon: "net-sales",
-    color: "#3B82F6",
+    color: "#4648D4",
   },
   {
     title: "Customer Outstanding",
     amount: "12.5k",
     subtitle: "Number of Invoice : 120",
     icon: "outstanding",
-    color: "#FBBF24",
+    color: "#EDA145",
   },
 ];
 
 export const salesByTransactionData = [
-  { name: "Cash", value: 4200, color: "#10B981" },
-  { name: "Credit", value: 3200, color: "#EF4444" },
-  { name: "Cheque", value: 1200, color: "#6366F1" },
-  { name: "Other", value: 900, color: "#F59E0B" },
+  { name: "Cash", value: 4200, color: "#15B097" },
+  { name: "Credit", value: 3200, color: "#DE5757" },
+  { name: "Cheque", value: 1200, color: "#6F57DE" },
+  { name: "Other", value: 900, color: "#EDA145" },
 ];
 
 export const outstandingDueAgeingData = [
-  { label: "< 30 Days", amount: "204k", percentage: 70, color: "#10B981" },
-  { label: "30-60 Days", amount: "85k", percentage: 40, color: "#F59E0B" },
-  { label: "> 60 Days", amount: "51k", percentage: 20, color: "#EF4444" },
+  { label: "< 30 Days", amount: "204k", percentage: 70, color: "#34D399" },
+  { label: "30-60 Days", amount: "85k", percentage: 40, color: "#FBBF24" },
+  { label: "> 60 Days", amount: "51k", percentage: 20, color: "#B41340" },
 ];
 
 const generateTableData = (count) => {
