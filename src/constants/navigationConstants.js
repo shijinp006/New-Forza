@@ -1,15 +1,16 @@
 import {
   Bell,
   BookText,
-  Headphones,
-  House,
-  Package,
   PieChart,
   Settings,
-  ShoppingBasket,
-  SquarePercent,
-  WalletCards
 } from "lucide-react";
+import { AiOutlineHome } from "react-icons/ai";
+import { GrBasket } from "react-icons/gr";
+import DiscountIcon from "../utils/custom icons/DiscountIcon";
+import { HiOutlineArchiveBox } from "react-icons/hi2";
+import { PiHeadsetLight } from "react-icons/pi";
+import { IoNotificationsOutline } from "react-icons/io5";
+
 
 /** Primary nav — matches `App.jsx` dashboard child routes */
 export const sidebarPrimaryNav = [
@@ -17,7 +18,7 @@ export const sidebarPrimaryNav = [
     id: "dashboard",
     title: "Dashboard",
     to: "/dashboard",
-    icon: House,
+    icon: AiOutlineHome,
   },
 
   {
@@ -30,19 +31,19 @@ export const sidebarPrimaryNav = [
     id: "purchase",
     title: "Purchase Analysis",
     to: "/dashboard/purchase",
-    icon: ShoppingBasket,
+    icon: GrBasket  ,
   },
   {
     id: "inventory",
     title: "Inventory",
     to: "/dashboard/inventory",
-    icon: WalletCards,
+    icon: HiOutlineArchiveBox,
   },
   {
     id: "tax",
     title: "Tax Report",
     to: "/dashboard/tax",
-    icon: SquarePercent,
+    icon: DiscountIcon,
   },
   {
     id: "account",
@@ -58,7 +59,7 @@ export const sidebarSecondaryNav = [
     id: "notifications",
     title: "Notifications",
     to: "/dashboard/notifications",
-    icon: Bell,
+    icon: IoNotificationsOutline,
   },
   {
     id: "settings",
@@ -70,6 +71,6 @@ export const sidebarSecondaryNav = [
     id: "help",
     title: "Help",
     to: "/dashboard/help",
-    icon: Headphones,
+    icon: PiHeadsetLight  ,
   },
 ];
