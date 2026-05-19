@@ -22,7 +22,7 @@ const Sale = () => {
    
    
       {/* 2. Sales Stats Section */}
-      <div className="flex flex-wrap gap-6 mb-8">
+      <div className="flex flex-wrap gap-5.5 mb-8">
         {salesStatsData.map((stat, index) => (
           <SalesStatCard key={index} {...stat} />
         ))}

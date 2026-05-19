@@ -14,10 +14,10 @@ const OutstandingDueAgeing = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-[24px] p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.04)] w-full xl:w-[320px] border border-[#F1F5F9] flex flex-col h-full">
+    <div className="bg-white rounded-[12px] p-5.5 shadow-[0px_12px_32px_-4px_#2B2F340F] w-full xl:w-[320px] border border-[#F1F5F9] flex flex-col h-full">
       <h3 className="text-[15px] font-bold text-[#1E293B] mb-8">Outstanding Due Ageing</h3>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2.75">
         {outstandingDueAgeingData.map((item, index) => (
           <div key={item.label} className="grid grid-cols-[80px_1fr_60px] items-center gap-4">
             {/* Label */}
@@ -37,7 +37,7 @@ const OutstandingDueAgeing = () => {
             </div>
             
             {/* Amount */}
-            <span className={`text-[14px] font-black text-right ${index === 2 ? 'text-[#EF4444]' : 'text-[#0F172A]'}`}>
+            <span className={`text-[12px] font-inter font-semibold text-right ${index === 2 ? 'text-[#EF4444]' : 'text-[#0F172A]'}`}>
               {item.amount}
             </span>
           </div>
