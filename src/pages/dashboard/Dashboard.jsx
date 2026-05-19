@@ -1,10 +1,10 @@
 import React from 'react';
-import StatCard from '../components/dashboard/StatCard';
-import HourlySalesChart from '../components/dashboard/HourlySalesChart';
-import IncomeExpensesChart from '../components/dashboard/IncomeExpensesChart';
-import PdcCheques from '../components/dashboard/PdcCheques';
-import ProductMovementChart from '../components/dashboard/ProductMovementChart';
-import { statsData } from '../constants/dashboardData';
+import StatCard from '../../components/dashboard/StatCard';
+import HourlySalesChart from '../../components/dashboard/HourlySalesChart';
+import IncomeExpensesChart from '../../components/dashboard/IncomeExpensesChart';
+import PdcCheques from '../../components/dashboard/PdcCheques';
+import ProductMovementChart from '../../components/dashboard/ProductMovementChart';
+import { statsData } from '../../constants/dashboardData';
 
 /**
  * Dashboard Component

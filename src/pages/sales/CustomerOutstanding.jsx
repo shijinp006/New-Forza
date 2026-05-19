@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import OutstandingFilter from "../components/sales/outstanding/OutstandingFilter";
-import OutstandingTable from "../components/sales/outstanding/OutstandingTable";
-import { customerOutstandingData } from "../constants/outstandingData";
+import OutstandingFilter from "../../components/sales/outstanding/OutstandingFilter";
+import OutstandingTable from "../../components/sales/outstanding/OutstandingTable";
+import { customerOutstandingData } from "../../constants/outstandingData";
 
 const CustomerOutstanding = () => {
   const [filters, setFilters] = useState({

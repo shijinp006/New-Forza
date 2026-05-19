@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import RevenueSummary from "../components/revenue/RevenueSummary";
-import RevenueTable from "../components/revenue/RevenueTable";
-import { revenueTransactions } from "../constants/revenueData";
+import RevenueSummary from "../../components/revenue/RevenueSummary";
+import RevenueTable from "../../components/revenue/RevenueTable";
+import { revenueTransactions } from "../../constants/revenueData";
 
 const RevenueDetails = () => {
   const [searchTerm, setSearchTerm] = useState("");
