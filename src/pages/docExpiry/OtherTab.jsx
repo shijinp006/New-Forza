@@ -22,7 +22,7 @@ export const OtherTab = ({ actionItems }) => {
     return (
         <div className="flex-1 min-h-0 px-4 sm:px-6 pb-4 flex flex-col md:flex-row gap-5 items-stretch overflow-hidden h-full">
             {/* Left: Action Items Table (Visible on Mobile with X-axis scroll & Desktop) */}
-            <div className="w-full flex-1 pb-6 lg:pb-0 min-w-0 bg-white rounded-2xl border border-gray-100 shadow-xs overflow-hidden flex flex-col h-full order-2 md:order-1">
+            <div className="w-full flex-1 pb-8 md:pb-0 lg:pb-0 min-w-0 bg-white rounded-2xl border border-gray-100 shadow-xs overflow-hidden flex flex-col h-full order-2 md:order-1">
                 <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
                     <div className="flex items-center gap-3">
                         <h2 style={{ ...inter, fontWeight: 700, fontSize: "15px" }} className="text-[#2B2F34]">
