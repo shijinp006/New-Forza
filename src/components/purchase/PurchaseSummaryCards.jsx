@@ -27,12 +27,11 @@ export default function PurchaseSummaryCards({ cards }) {
         const isClickable = card.id === "total-purchase";
 
         return (
-          <article 
-            key={card.id} 
+          <article
+            key={card.id}
             onClick={() => handleCardClick(card.id)}
-            className={`relative bg-white px-4 py-3.5 transition-all duration-300 group ${
-              isClickable ? "cursor-pointer hover:bg-slate-50 hover:shadow-inner" : ""
-            }`}
+            className={`relative bg-white px-4 py-3.5 transition-all duration-300 group ${isClickable ? "cursor-pointer hover:bg-slate-50 hover:shadow-inner" : ""
+              }`}
           >
             <p className="text-[13px] font-medium text-[#4B5563]">{card.title}</p>
             <p className="mt-4 text-[42px] font-bold leading-none tracking-[-0.02em] text-[#2B313D]">

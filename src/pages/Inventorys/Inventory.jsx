@@ -9,14 +9,16 @@ import {
 } from "../../constants/inventoryPageData";
 import { Calendar, Settings2 } from 'lucide-react';
 
+const inter = { fontFamily: "Inter, sans-serif" };
+
 const Inventory = () => {
   return (
     <main className="min-h-screen w-full bg-[#F7F8FC] px-6 pb-8 pt-6 overflow-y-auto">
       <div className="mx-auto flex w-full max-w-[1400px] flex-col">
         
         {/* Header */}
-        <div className="mb-8">
-            <h1 className="text-[32px] font-black text-[#1E293B] tracking-tight">Inventory</h1>
+        <div className="mb-4">
+            <h1 style={{ ...inter, fontWeight: 700, fontSize: "22px" }} className="text-slate-900">Inventory</h1>
         </div>
 
         {/* 3. KPI Cards */}

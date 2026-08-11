@@ -13,11 +13,13 @@ import {
   salesSummaryTotal,
 } from "../constants/accountPageData";
 
+const inter = { fontFamily: "Inter, sans-serif" };
+
 const Account = () => {
   return (
-    <main className="min-h-[calc(100vh-72px)] w-full bg-[#F7F8FC] px-6 py-6">
-      <div className="mx-auto w-full max-w-[1200px]">
-        <h1 className="text-[24px] font-extrabold tracking-[-0.02em] text-[#0F172A]">
+    <main className="min-h-[calc(100vh-72px)] w-full bg-[#F7F8FC] px-4 sm:px-8 pb-8 pt-4">
+      <div className="w-full flex flex-col">
+        <h1 style={{ ...inter, fontWeight: 700, fontSize: "22px" }} className="text-slate-900">
           Accounts
         </h1>
 

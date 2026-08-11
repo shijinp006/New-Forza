@@ -44,7 +44,7 @@ const POSReport = () => {
 
             {/* ── PAGE TITLE ROW ── */}
             <div className="px-4 sm:px-10 mt-4 mb-3 flex items-center justify-between">
-                <h1 style={{ ...inter, fontWeight: 700 }} className="text-slate-900 tracking-tight text-lg sm:text-2xl whitespace-nowrap ">
+                <h1 style={{ ...inter, fontWeight: 700, fontSize: "22px" }} className="text-gray-900 whitespace-nowrap">
                     POS Report
                 </h1>
                 <div className="flex items-center gap-2.5">

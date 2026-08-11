@@ -41,8 +41,8 @@ function MainToolbarHeader({ onMobileMenuToggle }) {
 
   return (
     <div className={cx(MAIN_HEADER_HEIGHT, "w-full bg-[#F7F8FC]")}>
-      {/* Non-full-width “capsule” container (matches screenshot inset) */}
-      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center px-4 sm:px-6">
+      {/* Full-width container matching component horizontal padding px-4 sm:px-8 */}
+      <div className="flex h-full w-full items-center px-4 sm:px-8">
         {/* Base div: gradient border effect (padding creates the 1px border) */}
         <div
           className="w-full z-0 rounded-xl p-px shadow-[0px_12px_32.26px_0px_#620DFF30,0px_24px_84.2px_0px_#620DFF57]"
@@ -90,7 +90,7 @@ function InnerBreadcrumbHeader({ title, onMobileMenuToggle }) {
 
   return (
     <div className={cx(MAIN_HEADER_HEIGHT, "w-full bg-white shadow-sm")}>
-      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center gap-3 sm:gap-4 px-4 sm:px-6">
+      <div className="flex h-full w-full items-center gap-3 sm:gap-4 px-4 sm:px-8">
         <button
           type="button"
           onClick={onMobileMenuToggle}
