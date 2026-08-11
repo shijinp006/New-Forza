@@ -6,6 +6,7 @@ import {
   ChevronLeft,
   Download,
   Filter,
+  Menu,
   Search,
   SlidersHorizontal,
 } from "lucide-react";
@@ -34,16 +35,14 @@ function isMainDashboardPage(pathname) {
   return all.some((i) => i.to === pathname);
 }
 
-function MainToolbarHeader() {
-
-
+function MainToolbarHeader({ onMobileMenuToggle }) {
   const headerBaseBackground =
     "linear-gradient(180deg, rgba(89, 73, 190, 0.3) 0%, rgba(205, 119, 255, 0.3) 100%), radial-gradient(63.87% 50% at 52.08% 100%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)";
 
   return (
     <div className={cx(MAIN_HEADER_HEIGHT, "w-full bg-[#F7F8FC]")}>
       {/* Non-full-width “capsule” container (matches screenshot inset) */}
-      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center  px-6">
+      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center px-4 sm:px-6">
         {/* Base div: gradient border effect (padding creates the 1px border) */}
         <div
           className="w-full z-0 rounded-xl p-px shadow-[0px_12px_32.26px_0px_#620DFF30,0px_24px_84.2px_0px_#620DFF57]"
@@ -53,7 +52,15 @@ function MainToolbarHeader() {
           <div className="rounded-lg bg-linear-to-b z-40 from-[#5949BE] px-4 py-3 to-[#620DFF] shadow-[inset_0px_1px_4px_2px_#E2D2FF,inset_0px_1px_18px_2px_#EBD2FF] ">
             {/*  toolbar container */}
             <div className="flex h-11 w-full items-center justify-between gap-3 rounded-[12px] bg-transparent">
-              <div>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={onMobileMenuToggle}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/20 text-white hover:bg-white/30 lg:hidden shrink-0"
+                  aria-label="Open mobile menu"
+                >
+                  <Menu className="h-5 w-5" />
+                </button>
                 <h2 className="font-inter font-semibold text-lg text-white">
                   Alfuttaim
                 </h2>
@@ -78,16 +85,25 @@ function MainToolbarHeader() {
   );
 }
 
-function InnerBreadcrumbHeader({ title }) {
+function InnerBreadcrumbHeader({ title, onMobileMenuToggle }) {
   const navigate = useNavigate();
 
   return (
     <div className={cx(MAIN_HEADER_HEIGHT, "w-full bg-white shadow-sm")}>
-      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center gap-4 px-6">
+      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center gap-3 sm:gap-4 px-4 sm:px-6">
+        <button
+          type="button"
+          onClick={onMobileMenuToggle}
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E5E7EB] bg-white text-[#0F172A] shadow-sm hover:bg-slate-50 lg:hidden shrink-0"
+          aria-label="Open mobile menu"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E5E7EB] bg-white text-[#EF4444] shadow-sm hover:bg-slate-50"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E5E7EB] bg-white text-[#EF4444] shadow-sm hover:bg-slate-50 shrink-0"
           aria-label="Go back"
         >
           <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={2.5} />
@@ -137,7 +153,7 @@ function InnerBreadcrumbHeader({ title }) {
   );
 }
 
-const Header = () => {
+const Header = ({ onMobileMenuToggle }) => {
   const { pathname } = useLocation();
 
   const variant = useMemo(
@@ -149,9 +165,12 @@ const Header = () => {
   return (
     <header className="sticky top-0  w-full">
       {variant === "main" ? (
-        <MainToolbarHeader />
+        <MainToolbarHeader onMobileMenuToggle={onMobileMenuToggle} />
       ) : (
-        <InnerBreadcrumbHeader title={title} />
+        <InnerBreadcrumbHeader
+          title={title}
+          onMobileMenuToggle={onMobileMenuToggle}
+        />
       )}
     </header>
   );

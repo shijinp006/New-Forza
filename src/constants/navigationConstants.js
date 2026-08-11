@@ -3,6 +3,8 @@ import {
   BookText,
   PieChart,
   Settings,
+  Monitor,
+  CalendarClock,
 } from "lucide-react";
 import { AiOutlineHome } from "react-icons/ai";
 import { GrBasket } from "react-icons/gr";
@@ -40,6 +42,12 @@ export const sidebarPrimaryNav = [
     icon: HiOutlineArchiveBox,
   },
   {
+    id: "pos-report",
+    title: "Counter Report",
+    to: "/dashboard/pos-report",
+    icon: Monitor,
+  },
+  {
     id: "tax",
     title: "Tax Report",
     to: "/dashboard/tax",
@@ -50,6 +58,12 @@ export const sidebarPrimaryNav = [
     title: "Account report",
     to: "/dashboard/account",
     icon: BookText,
+  },
+  {
+    id: "doc-expiry",
+    title: "Doc Expiry",
+    to: "/dashboard/doc-expiry",
+    icon: CalendarClock,
   },
 ];
 

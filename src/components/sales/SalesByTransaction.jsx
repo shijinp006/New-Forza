@@ -93,8 +93,8 @@ const SalesByTransaction = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-[12px] p-8 shadow-[0px_10px_40px_rgba(0,0,0,0.02)] flex-1 border border-[#F1F5F9]">
-      <div className="flex justify-between items-start mb-12">
+    <div className="bg-white rounded-[12px] p-4 sm:p-8 shadow-[0px_10px_40px_rgba(0,0,0,0.02)] flex-1 border border-[#F1F5F9] w-full min-w-0">
+      <div className="flex justify-between items-start mb-6 sm:mb-12">
         <div>
           <h3 className="text-[18px] font-bold text-[#2B2F34] font-manrope">Sales By Transaction</h3>
           <p className="text-[14px] font-medium text-[#585C62] mt-1 font-inter">Daily Sales vs Sales returns</p>
@@ -104,60 +104,64 @@ const SalesByTransaction = () => {
         </button>
       </div>
 
-      <div className="h-[320px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          {mounted ? (
-            <BarChart
-              data={salesByTransactionData}
-              margin={{ top: 20, right: 10, left: -20, bottom: 0 }}
-              barSize={100} 
-            >
-              <CartesianGrid vertical={false} strokeDasharray="0" stroke="#F1F5F9" />
-              <XAxis 
-                dataKey="name" 
-                axisLine={false} 
-                tickLine={false} 
-                tick={false}
-              />
-              <YAxis 
-                domain={[0, 5000]}
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }}
-                ticks={[0, 1000, 2500, 5000]}
-                tickFormatter={(v) => {
-                  if(v === 5000) return '100k';
-                  if(v === 2500) return '50k';
-                  if(v === 1000) return '10k';
-                  return '0';
-                }}
-              />
-              <Tooltip cursor={{ fill: 'transparent' }} content={() => null} />
-              <Bar 
-                dataKey="value" 
-                background={<OuterBar />}
-                shape={<InnerBar />}
-                animationDuration={1500}
-                animationBegin={0}
-                isAnimationActive={true}
-              >
-                {salesByTransactionData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Bar>
-            </BarChart>
-          ) : null}
-        </ResponsiveContainer>
-      </div>
-
-      {/* Legend markers matching image layout */}
-      <div className="flex justify-start gap-8 mt-10 pl-6">
-        {salesByTransactionData.map((item) => (
-          <div key={item.name} className="flex items-center gap-3">
-            <span className="text-[12px] font-medium text-[#111827]">{item.name}</span>
-            <div className="w-[20px] h-[20px] rounded-[4px] shadow-sm" style={{ backgroundColor: item.color }} />
+      <div className="w-full overflow-x-auto pb-2">
+        <div className="min-w-[420px]">
+          <div className="h-[320px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              {mounted ? (
+                <BarChart
+                  data={salesByTransactionData}
+                  margin={{ top: 20, right: 10, left: -20, bottom: 0 }}
+                  barSize={100} 
+                >
+                  <CartesianGrid vertical={false} strokeDasharray="0" stroke="#F1F5F9" />
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={false}
+                  />
+                  <YAxis 
+                    domain={[0, 5000]}
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }}
+                    ticks={[0, 1000, 2500, 5000]}
+                    tickFormatter={(v) => {
+                      if(v === 5000) return '100k';
+                      if(v === 2500) return '50k';
+                      if(v === 1000) return '10k';
+                      return '0';
+                    }}
+                  />
+                  <Tooltip cursor={{ fill: 'transparent' }} content={() => null} />
+                  <Bar 
+                    dataKey="value" 
+                    background={<OuterBar />}
+                    shape={<InnerBar />}
+                    animationDuration={1500}
+                    animationBegin={0}
+                    isAnimationActive={true}
+                  >
+                    {salesByTransactionData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              ) : null}
+            </ResponsiveContainer>
           </div>
-        ))}
+
+          {/* Legend markers matching image layout */}
+          <div className="flex justify-start gap-6 sm:gap-8 mt-10 pl-6">
+            {salesByTransactionData.map((item) => (
+              <div key={item.name} className="flex items-center gap-2 sm:gap-3 shrink-0">
+                <span className="text-[12px] font-medium text-[#111827]">{item.name}</span>
+                <div className="w-[20px] h-[20px] rounded-[4px] shadow-sm shrink-0" style={{ backgroundColor: item.color }} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

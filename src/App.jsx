@@ -33,6 +33,9 @@ const Settings = lazy(() => import("./pages/Settings"));
 const Help = lazy(() => import("./pages/Help"));
 const Notifications = lazy(() => import("./pages/Notifications"));
 
+const POSReport = lazy(() => import("./components/posreport/POSReport"));
+const DocExpiry = lazy(() => import("./components/docexpiry/DocExpiry"));
+
 
 function App() {
   return (
@@ -70,6 +73,10 @@ function App() {
             </Route>
 
             <Route path="tax" element={<Tax />} />
+
+            <Route path="pos-report" element={<POSReport />} />
+
+            <Route path="doc-expiry" element={<DocExpiry />} />
 
             <Route path="account" element={<Account />} />
             <Route path="settings" element={<Settings />} />

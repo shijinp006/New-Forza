@@ -1,0 +1,79 @@
+import { useState } from "react";
+import { Check, Menu } from "lucide-react";
+import CallenderIcon from "../../assets/Callender.svg?react";
+import Sort2Icon from "../../assets/Sort2.svg?react";
+
+const inter = { fontFamily: "Inter, sans-serif" };
+
+export const TopBarHeader = ({ dateFilter, setDateFilter }) => {
+    const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
+
+    const handleOpenSidebar = () => {
+        window.dispatchEvent(new Event("open-sidebar"));
+    };
+
+    return (
+        <div
+            className="mx-4 mt-4 sm:mx-6 sm:mt-5 rounded-2xl overflow-visible shrink-0 relative z-30 border border-[#CD77FF]/60"
+            style={{
+                background: "#5949BE",
+                boxShadow: "0 0 0 1px rgba(205, 119, 255, 0.5), 0 0 18px rgba(205, 119, 255, 0.55), 0 0 35px rgba(109, 65, 214, 0.45), 0 8px 32px rgba(79, 56, 193, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.35)",
+            }}
+        >
+            <div className="flex items-center justify-between px-5 py-3">
+                {/* Left side: Logo / Title */}
+                <div className="flex items-center gap-2.5">
+                    <span style={{ ...inter, fontWeight: 600, fontSize: "15px" }} className="text-white">
+                        Alfuttaim
+                    </span>
+                </div>
+
+                {/* Right side: Date Filter dropdown + Navigation Menu Button */}
+                <div className="flex items-center gap-2 relative">
+                    <div className="relative">
+                        <button
+                            type="button"
+                            onClick={() => setIsDateMenuOpen(!isDateMenuOpen)}
+                            className="flex items-center gap-2 bg-white text-slate-800 px-3 py-1.5 rounded-xl border border-white/30 hover:bg-slate-100 transition cursor-pointer shadow-xs"
+                        >
+                            <CallenderIcon className="w-4 h-4 text-slate-700" />
+                            <span style={{ ...inter, fontWeight: 500, fontSize: "13px" }}>{dateFilter}</span>
+                            <Sort2Icon className="w-3.5 h-3.5 text-slate-500" />
+                        </button>
+
+                        {isDateMenuOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 z-50 text-left">
+                                {["Today", "Yesterday", "Last 7 Days", "Last 30 Days", "This Month", "All Time"].map((opt) => (
+                                    <button
+                                        key={opt}
+                                        type="button"
+                                        onClick={() => {
+                                            setDateFilter(opt);
+                                            setIsDateMenuOpen(false);
+                                        }}
+                                        className="w-full text-left px-3.5 py-1.5 text-xs text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition flex items-center justify-between cursor-pointer"
+                                    >
+                                        <span>{opt}</span>
+                                        {dateFilter === opt && <Check size={13} className="text-violet-600" />}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Navigation Menu Button (Mobile view on right side) */}
+                    <button
+                        type="button"
+                        onClick={handleOpenSidebar}
+                        className="lg:hidden p-1.5 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition cursor-pointer"
+                        title="Open Navigation Menu"
+                    >
+                        <Menu size={16} />
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default TopBarHeader;
