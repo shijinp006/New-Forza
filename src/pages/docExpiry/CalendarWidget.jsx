@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, ChevronDown, ChevronUp, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, ChevronDown, X } from "lucide-react";
 
 const inter = { fontFamily: "Inter, sans-serif" };
 
@@ -69,13 +69,13 @@ export const CalendarWidget = ({
     );
 
     return (
-        <div style={inter} className="w-full sm:w-[300px] lg:w-[320px] shrink-0 bg-white rounded-2xl border border-gray-100 shadow-xs p-4 sm:p-5 flex flex-col lg:h-[410px]">
+        <div style={inter} className="w-full sm:w-[300px] lg:w-[320px] shrink-0 bg-white rounded-2xl border border-gray-100 shadow-xs p-4 sm:p-5 flex flex-col lg:h-[400px]">
             {/* Mobile View Calendar Toggle Button */}
             <div className="md:hidden">
                 <button
                     type="button"
                     onClick={() => setShowMobileCalendar(!showMobileCalendar)}
-                    className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-violet-50 text-violet-700 hover:bg-violet-100 transition cursor-pointer border border-violet-100/80 shadow-2xs"
+                    className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-violet-50 text-violet-700 hover:bg-violet-100 transition-all duration-300 cursor-pointer border border-violet-100/80 shadow-2xs"
                 >
                     <div className="flex items-center gap-2">
                         <CalendarIcon size={16} className="text-violet-600" />
@@ -84,13 +84,16 @@ export const CalendarWidget = ({
                         </span>
                     </div>
                     <div className="flex items-center gap-1 text-violet-600">
-                        {showMobileCalendar ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        <ChevronDown size={16} className={`transition-transform duration-300 ease-out ${showMobileCalendar ? "rotate-180" : "rotate-0"}`} />
                     </div>
                 </button>
             </div>
 
-            {/* Calendar Section (Collapsible on Mobile, Always Visible on Desktop) */}
-            <div className={`${showMobileCalendar ? "block mt-3 pt-3 border-t border-gray-100" : "hidden"} md:block pb-4 border-b border-gray-100 md:border-b-0 md:pb-0`}>
+            {/* Calendar Section (Smooth Collapsible on Mobile, Always Visible on Desktop) */}
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden md:block pb-4 border-b border-gray-100 md:border-b-0 md:pb-0 ${showMobileCalendar
+                ? "max-h-[350px] opacity-100 mt-3 pt-3 border-t border-gray-100"
+                : "max-h-0 opacity-0 md:max-h-none md:opacity-100"
+                }`}>
                 <div className="flex items-center justify-between mb-4">
                     <span style={{ fontWeight: 600, fontSize: "14px" }} className="text-slate-800">
                         {monthNames[month]} {year}

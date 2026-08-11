@@ -86,7 +86,7 @@ export const DocExpiry = () => {
     return (
         <div
             style={inter}
-            className="w-full h-full flex flex-col bg-[#F7F9FB] overflow-hidden min-h-0"
+            className="w-full h-full flex flex-col bg-[#F7F9FB] overflow-hidden min-h-0 lg:pb-2"
         >
 
 

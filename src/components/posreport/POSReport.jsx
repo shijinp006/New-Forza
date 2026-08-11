@@ -37,7 +37,7 @@ const POSReport = () => {
     };
 
     return (
-        <div style={{ ...inter, scrollbarWidth: "thin", scrollbarColor: "#cbd5e1 transparent" }} className="h-full min-h-0 flex-1 overflow-y-auto bg-[#F7F9FB] flex flex-col pb-8">
+        <div style={{ ...inter, scrollbarWidth: "thin", scrollbarColor: "#cbd5e1 transparent" }} className="h-full min-h-0 flex-1 overflow-y-auto bg-[#F7F9FB] flex flex-col lg:pb-4">
 
 
 
