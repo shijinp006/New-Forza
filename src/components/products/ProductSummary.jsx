@@ -29,6 +29,8 @@ const ProductSummary = ({
     formik.setFieldValue("stockLevel", e.target.value);
     onStockFilterChange(e.target.value);
   };
+  console.log("ads");
+
 
   return (
     <div className="mb-8">
@@ -40,11 +42,10 @@ const ProductSummary = ({
             <button
               key={cat}
               onClick={() => handleCategoryClick(cat)}
-              className={`px-5 py-2 rounded-full text-[14px] font-semibold transition-all duration-300 ${
-                formik.values.category === cat
+              className={`px-5 py-2 rounded-full text-[14px] font-semibold transition-all duration-300 ${formik.values.category === cat
                   ? "bg-[#5949BE] text-white shadow-md"
                   : "bg-white text-[#64748B] border border-[#E2E8F0] hover:bg-slate-50"
-              }`}
+                }`}
             >
               {cat}
             </button>
