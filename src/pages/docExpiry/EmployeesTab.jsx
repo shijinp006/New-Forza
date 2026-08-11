@@ -40,7 +40,7 @@ export const EmployeesTab = ({ employees, selectedEmployee, setSelectedEmployee 
     const isDetailOpen = Boolean(selectedEmployee);
 
     return (
-        <div className="flex-1 min-h-0 px-4 sm:px-6 lg:pb-4 pb-10 flex gap-3 overflow-hidden h-full">
+        <div className="flex-1 min-h-0 px-4 sm:px-6 lg:pb-4 pb-20 flex gap-3 overflow-hidden h-full">
             <div className="flex-1 min-w-0 bg-white rounded-2xl border border-gray-100 shadow-xs overflow-hidden flex flex-col h-full transition-all duration-200">
                 {/* Filters Row */}
                 <div className="flex flex-wrap items-center gap-2 px-3.5 py-2.5 border-b border-gray-100 shrink-0 relative z-20">
