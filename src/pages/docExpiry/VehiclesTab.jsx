@@ -34,7 +34,7 @@ export const VehiclesTab = ({ vehicles }) => {
     const paginatedVehicles = filteredVehicles.slice(vehStartIndex, vehEndIndex);
 
     return (
-        <div className="flex-1 min-h-0 px-4 sm:px-6 pb-4 flex flex-col overflow-hidden h-full">
+        <div className="flex-1 min-h-0 px-4 sm:px-6 lg:pb-4 pb-20 flex flex-col overflow-hidden h-full">
             <div className="flex-1 min-w-0 bg-white rounded-2xl border border-gray-100 shadow-xs overflow-hidden flex flex-col h-full">
                 {/* Filters Row */}
                 <div className="flex flex-wrap items-center gap-2.5 px-4 py-3 border-b border-gray-100 shrink-0">
