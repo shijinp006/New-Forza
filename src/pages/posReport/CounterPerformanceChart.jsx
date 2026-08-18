@@ -330,8 +330,9 @@ export function CounterPerformanceChart({ activeCounter, onSelectCounter, viewTy
                                                 fill="none"
                                                 style={{
                                                     pointerEvents: "none",
-                                                    transition: "opacity 0.2s ease",
-                                                    opacity: hoveredSlice ? (isHovered ? 1 : 0.6) : 1,
+                                                    transition: "opacity 0.2s ease, stroke-width 0.25s ease",
+                                                    opacity: hoveredSlice ? (isHovered ? 1 : 0.45) : 1,
+                                                    strokeWidth: isHovered ? 14.5 : 12.5,
                                                 }}
                                             />
                                         </g>
@@ -339,18 +340,73 @@ export function CounterPerformanceChart({ activeCounter, onSelectCounter, viewTy
                                 });
                             })()}
                         </svg>
+                        {/* Center Label — static total, not changing on hover */}
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none">
                             <span
-                                style={{ ...inter, fontWeight: hoveredSlice ? 600 : 500, fontSize: "11px", color: hoveredSlice ? hoveredSlice.color : undefined }}
-                                className={`transition-colors ${hoveredSlice ? "" : "text-slate-400"} leading-tight`}
+                                style={{
+                                    ...inter,
+                                    fontWeight: 500,
+                                    fontSize: "11px",
+                                }}
+                                className="text-slate-400 leading-tight"
                             >
-                                {displayLabel}
+                                Total Collected
                             </span>
-                            <span style={{ ...poppins, fontWeight: 700, fontSize: "13.5px" }} className="text-slate-900 leading-tight mt-1 flex items-center justify-center gap-1 transition-all">
+                            <span style={{ ...poppins, fontWeight: 700, fontSize: "13.5px" }} className="text-slate-900 leading-tight mt-1 flex items-center justify-center gap-1">
                                 <DIcon className="w-3.5 h-3.5 text-slate-900 shrink-0" />
-                                <span>{displayAmount}</span>
+                                <span>{totalCollectedFormatted}</span>
                             </span>
                         </div>
+                        {/* Tooltip — compact pill badge on top right with generous spacing */}
+                        {hoveredSlice && (() => {
+                            const sliceColor = hoveredSlice.color || getTypeColor(hoveredSlice.type, hoveredSlice.percentage);
+                            return (
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        top: "-26px",
+                                        right: "0px",
+                                        pointerEvents: "none",
+                                        zIndex: 20,
+                                        animation: "fadeSlideLeft 0.18s ease-out",
+                                        ...inter,
+                                    }}
+                                >
+                                    <div style={{
+                                        background: "#FFFFFF",
+                                        borderRadius: "9999px",
+                                        padding: "4px 10px",
+                                        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+                                        border: "1px solid #E2E8F0",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "7px",
+                                        whiteSpace: "nowrap",
+                                    }}>
+                                        <span style={{
+                                            width: "7px",
+                                            height: "7px",
+                                            borderRadius: "50%",
+                                            backgroundColor: sliceColor,
+                                            flexShrink: 0,
+                                        }} />
+                                        <span style={{ fontSize: "12px", fontWeight: 600, color: "#1E293B" }}>
+                                            {hoveredSlice.type}
+                                        </span>
+                                        <span style={{
+                                            fontSize: "11px",
+                                            fontWeight: 700,
+                                            color: sliceColor,
+                                            background: `${sliceColor}18`,
+                                            padding: "1px 7px",
+                                            borderRadius: "9999px",
+                                        }}>
+                                            {hoveredSlice.percentage}%
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })()}
                     </div>
 
                     {/* Legend */}

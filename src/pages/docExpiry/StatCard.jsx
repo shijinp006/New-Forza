@@ -18,11 +18,22 @@ export const StatCard = ({ stat, isActive, onClick }) => {
                 <span style={{ ...inter, fontWeight: 500, fontSize: "12px" }} className="text-[#424656]">
                     {stat.label}
                 </span>
-                <div className={`w-8 h-8 rounded-xl ${stat.iconBg} flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110`}>
+                <div
+                    className="flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '8px',
+                        padding: '8px',
+                        border: '1px solid rgba(0, 0, 0, 0.06)',
+                        background: '#F0F0F04D',
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)',
+                    }}
+                >
                     {SvgIcon ? (
-                        <SvgIcon className="w-5 h-5" />
+                        <SvgIcon className="w-4 h-4" />
                     ) : Icon ? (
-                        <Icon size={18} className={stat.iconColor} />
+                        <Icon size={16} className={stat.iconColor} />
                     ) : null}
                 </div>
             </div>
@@ -31,13 +42,10 @@ export const StatCard = ({ stat, isActive, onClick }) => {
                     {stat.value}
                 </p>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center">
                 <span style={{ ...inter, fontWeight: 400, fontSize: "11px" }} className="text-[#726C6C] truncate">
                     {stat.sub}
                 </span>
-                {stat.hasArrow && (
-                    <ArrowRight size={14} className={isActive ? "text-violet-600 font-bold" : "text-violet-500"} />
-                )}
             </div>
         </div>
     );

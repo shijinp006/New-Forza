@@ -285,8 +285,9 @@ export function ShiftOverview({ counter }) {
                                                     fill="none"
                                                     style={{
                                                         pointerEvents: "none",
-                                                        transition: "opacity 0.2s ease",
-                                                        opacity: hoveredSlice ? (isHovered ? 1 : 0.6) : 1,
+                                                        transition: "opacity 0.2s ease, stroke-width 0.25s ease",
+                                                        opacity: hoveredSlice ? (isHovered ? 1 : 0.45) : 1,
+                                                        strokeWidth: isHovered ? 14.5 : 12.5,
                                                     }}
                                                 />
                                             </g>
@@ -295,19 +296,33 @@ export function ShiftOverview({ counter }) {
                                 })()}
                             </svg>
 
-                            {/* Donut Center */}
+                            {/* Donut Center — static total */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none">
                                 <span
-                                    style={{ ...inter, fontSize: "12.5px", fontWeight: hoveredSlice ? 600 : 400, color: hoveredSlice ? hoveredSlice.color : undefined }}
-                                    className={`transition-colors ${hoveredSlice ? "" : "text-[#585C62]"}`}
+                                    style={{ ...inter, fontSize: "12.5px", fontWeight: 400 }}
+                                    className="text-[#585C62]"
                                 >
-                                    {displayLabel}
+                                    Total Collected
                                 </span>
-                                <span style={{ ...inter, fontSize: "16px", fontWeight: 700 }} className="text-slate-800 mt-0.5 inline-flex items-center gap-1 transition-all">
+                                <span style={{ ...inter, fontSize: "16px", fontWeight: 700 }} className="text-slate-800 mt-0.5 inline-flex items-center gap-1">
                                     <DIcon className="w-4 h-4 text-slate-800 shrink-0" />
-                                    <span>{displayAmount}</span>
+                                    <span>{totalCollectedFormatted}</span>
                                 </span>
                             </div>
+
+                            {/* Tooltip — compact pill badge on top right with generous spacing */}
+                            {hoveredSlice && (() => {
+                                const sc = hoveredSlice.color || getTypeColor(hoveredSlice.type, hoveredSlice.percentage);
+                                return (
+                                    <div style={{ position: "absolute", top: "-26px", right: "0px", pointerEvents: "none", zIndex: 20, animation: "fadeSlideLeft 0.18s ease-out", ...inter }}>
+                                        <div style={{ background: "#FFFFFF", borderRadius: "9999px", padding: "4px 10px", boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", border: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: "7px", whiteSpace: "nowrap" }}>
+                                            <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: sc, flexShrink: 0 }} />
+                                            <span style={{ fontSize: "12px", fontWeight: 600, color: "#1E293B" }}>{hoveredSlice.type}</span>
+                                            <span style={{ fontSize: "11px", fontWeight: 700, color: sc, background: `${sc}18`, padding: "1px 7px", borderRadius: "9999px" }}>{hoveredSlice.percentage}%</span>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
                         </div>
 
                         {/* Legend with values */}
@@ -464,8 +479,10 @@ export function ShiftOverview({ counter }) {
                                                     fill="none"
                                                     style={{
                                                         pointerEvents: "none",
-                                                        transition: "opacity 0.2s ease",
-                                                        opacity: hoveredSlice ? (isHovered ? 1 : 0.6) : 1,
+                                                        transition: "opacity 0.25s ease, stroke-width 0.3s cubic-bezier(0.34,1.56,0.64,1), filter 0.25s ease",
+                                                        opacity: hoveredSlice ? (isHovered ? 1 : 0.4) : 1,
+                                                        strokeWidth: isHovered ? 15.5 : 12.5,
+                                                        filter: isHovered ? `drop-shadow(0 2px 6px ${color}44)` : "none",
                                                     }}
                                                 />
                                             </g>
@@ -473,18 +490,32 @@ export function ShiftOverview({ counter }) {
                                     });
                                 })()}
                             </svg>
+                            {/* Donut Center — static total */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none">
                                 <span
-                                    style={{ ...inter, fontSize: "12px", fontWeight: hoveredSlice ? 600 : 400, color: hoveredSlice ? hoveredSlice.color : undefined }}
-                                    className={`transition-colors ${hoveredSlice ? "" : "text-[#585C62]"}`}
+                                    style={{ ...inter, fontSize: "12px", fontWeight: 400 }}
+                                    className="text-[#585C62]"
                                 >
-                                    {displayLabel}
+                                    Total Collected
                                 </span>
-                                <span style={{ ...inter, fontSize: "15px", fontWeight: 700 }} className="text-slate-800 mt-0.5 inline-flex items-center gap-1 transition-all">
+                                <span style={{ ...inter, fontSize: "15px", fontWeight: 700 }} className="text-slate-800 mt-0.5 inline-flex items-center gap-1">
                                     <DIcon className="w-3.5 h-3.5 text-slate-800 shrink-0" />
-                                    <span>{displayAmount}</span>
+                                    <span>{totalCollectedFormatted}</span>
                                 </span>
                             </div>
+                            {/* Tooltip — compact pill badge on top right with generous spacing */}
+                            {hoveredSlice && (() => {
+                                const sc = hoveredSlice.color || getTypeColor(hoveredSlice.type, hoveredSlice.percentage);
+                                return (
+                                    <div style={{ position: "absolute", top: "-26px", right: "0px", pointerEvents: "none", zIndex: 20, animation: "fadeSlideLeft 0.18s ease-out", ...inter }}>
+                                        <div style={{ background: "#FFFFFF", borderRadius: "9999px", padding: "4px 10px", boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", border: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: "7px", whiteSpace: "nowrap" }}>
+                                            <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: sc, flexShrink: 0 }} />
+                                            <span style={{ fontSize: "12px", fontWeight: 600, color: "#1E293B" }}>{hoveredSlice.type}</span>
+                                            <span style={{ fontSize: "11px", fontWeight: 700, color: sc, background: `${sc}18`, padding: "1px 7px", borderRadius: "9999px" }}>{hoveredSlice.percentage}%</span>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
                         </div>
 
                         {/* Legend */}

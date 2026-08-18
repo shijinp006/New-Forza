@@ -112,7 +112,7 @@ const POSReport = () => {
                                     fontWeight: isActive ? 600 : 500,
                                     fontSize: "12.5px",
                                 }}
-                                className={`px-4 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${isActive
+                                className={`px-4 py-1.5 rounded-[6px] transition cursor-pointer whitespace-nowrap ${isActive
                                     ? "bg-white text-slate-800 shadow-sm border border-gray-200/60"
                                     : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
                                     }`}

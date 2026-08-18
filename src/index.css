@@ -6,7 +6,9 @@
 
 @import "tailwindcss";
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -58,9 +60,54 @@ html, body, #root {
     opacity: 0;
     transform: translateY(6px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) translateY(-50%) translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-100%) translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes fadeSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -77,6 +124,7 @@ html, body, #root {
     /* Custom ease-in with a non-zero starting slope so it doesn't stall at the top */
     animation-timing-function: cubic-bezier(0.4, 0.08, 1, 1);
   }
+
   50% {
     transform: rotate(90deg);
     stroke-dasharray: 394 591;
@@ -84,6 +132,7 @@ html, body, #root {
     /* Perfectly mirrored ease-out to match the left side to the right side exactly */
     animation-timing-function: cubic-bezier(0, 0, 0.6, 0.92);
   }
+
   100% {
     transform: rotate(270deg);
     stroke-dasharray: 10 591;
@@ -101,6 +150,7 @@ html, body, #root {
     opacity: 0.2;
     animation-timing-function: cubic-bezier(0.4, 0.08, 1, 1);
   }
+
   50% {
     transform: rotate(90deg);
     stroke-dasharray: 10 591;
@@ -108,6 +158,7 @@ html, body, #root {
     opacity: 1;
     animation-timing-function: cubic-bezier(0, 0, 0.6, 0.92);
   }
+
   100% {
     transform: rotate(270deg);
     stroke-dasharray: 10 591;
